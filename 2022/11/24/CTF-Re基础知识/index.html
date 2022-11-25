@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>CTF Re基础知识 | M1nG's BLOG</title><meta name="keywords" content="逆向工程"><meta name="author" content="M1nG_0"><meta name="copyright" content="M1nG_0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CTF中逆向的一些基础知识整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Re基础知识">
+<meta property="og:url" content="http://example.com/2022/11/24/CTF-Re%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="M1nG&#39;s BLOG">
+<meta property="og:description" content="CTF中逆向的一些基础知识整理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-11-24T09:22:30.000Z">
+<meta property="article:modified_time" content="2022-11-25T06:37:29.478Z">
+<meta property="article:author" content="M1nG_0">
+<meta property="article:tag" content="逆向工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/11/24/CTF-Re%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CTF Re基础知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-25 14:37:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/05/19/nODWsJILHQ7rMYC.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">M1nG's BLOG</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">CTF Re基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-24T09:22:30.000Z" title="发表于 2022-11-24 17:22:30">2022-11-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-25T06:37:29.478Z" title="更新于 2022-11-25 14:37:29">2022-11-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CTF Re基础知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="0x00-CTF-Reverse基础知识总览"><a href="#0x00-CTF-Reverse基础知识总览" class="headerlink" title="0x00 CTF Reverse基础知识总览"></a>0x00 CTF Reverse基础知识总览</h1><table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>工具&#x2F;实验</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Android</td>
+<td>so动态调试</td>
+<td>IDA跨平台调试</td>
+</tr>
+<tr>
+<td></td>
+<td>so文件分析</td>
+<td>IDA</td>
+</tr>
+<tr>
+<td></td>
+<td>ab文件还原</td>
+<td>abe.jar还原</td>
+</tr>
+<tr>
+<td></td>
+<td>反编译工具</td>
+<td>改之理ApkIDE3.3.1&#x2F;Smali2Java&#x2F;JEB</td>
+</tr>
+<tr>
+<td></td>
+<td>算法分析</td>
+<td>改之理ApkIDE3.3.1&#x2F;Smali2Java&#x2F;JEB</td>
+</tr>
+<tr>
+<td></td>
+<td>apk签名</td>
+<td>签名</td>
+</tr>
+<tr>
+<td></td>
+<td>JEB动态调试</td>
+<td>JEB</td>
+</tr>
+<tr>
+<td></td>
+<td>逻辑篡改</td>
+<td>改之理ApkIDE3.3.1&#x2F;Smali2Java&#x2F;JEB</td>
+</tr>
+<tr>
+<td></td>
+<td>DDMS(DalvikDebugMonitorServer)</td>
+<td>查看程序端口，logcat日志</td>
+</tr>
+<tr>
+<td></td>
+<td>脱壳(dump)</td>
+<td>xposed，FRIDA-DEXDump</td>
+</tr>
+<tr>
+<td></td>
+<td>Hook</td>
+<td>Frida简单应用</td>
+</tr>
+<tr>
+<td></td>
+<td>加固</td>
+<td>相当于加壳，dex加固，so加固</td>
+</tr>
+<tr>
+<td></td>
+<td>Apk开发(Android Studio)</td>
+<td>简单流程，了解各个文件功能，关键函数</td>
+</tr>
+<tr>
+<td></td>
+<td>反调试</td>
+<td>检测调试特征，ptrace</td>
+</tr>
+<tr>
+<td></td>
+<td>adb</td>
+<td>adb连接手机，安装卸载程序</td>
+</tr>
+<tr>
+<td></td>
+<td>常见加解密算法特征</td>
+<td>base64系列，rc4，twofish，AES等</td>
+</tr>
+<tr>
+<td></td>
+<td>apk伪加密</td>
+<td>“ZipCenOp.jar0x0046处修改09为00即可”</td>
+</tr>
+<tr>
+<td>.NET&#x2F;C#</td>
+<td>unity游戏逆向</td>
+<td>dnspy静态分析代码，动态调试游戏，更改关键信息</td>
+</tr>
+<tr>
+<td></td>
+<td>NET.Reflector8.5  ILSpy</td>
+<td>NET.Reflector8.5   ILSpy</td>
+</tr>
+<tr>
+<td>nsis</td>
+<td>7-ZipV15.05</td>
+<td>分析[NSIS].nsi</td>
+</tr>
+<tr>
+<td>Python&#x2F;Lua</td>
+<td>python字节码</td>
+<td>相当于python中的汇编</td>
+</tr>
+<tr>
+<td></td>
+<td>pyc逆向</td>
+<td>在线pyc反编译，uncompyle反编译pyc的使用</td>
+</tr>
+<tr>
+<td>VM逆向</td>
+<td>IDA</td>
+<td>虚拟机，opcode，代码解析</td>
+</tr>
+<tr>
+<td>程序逆向</td>
+<td>查PE，ELF</td>
+<td>file命令，exeinfo，peid，die</td>
+</tr>
+<tr>
+<td></td>
+<td>SMC代码</td>
+<td>程序动态自加解密</td>
+</tr>
+<tr>
+<td></td>
+<td>定位入口点</td>
+<td>IDA，OD，PE</td>
+</tr>
+<tr>
+<td></td>
+<td>爆破，F5反汇编为C代码</td>
+<td>strings、OD</td>
+</tr>
+<tr>
+<td></td>
+<td>简单脱壳</td>
+<td>upx、esp定律</td>
+</tr>
+<tr>
+<td></td>
+<td>Linux逆向</td>
+<td>IDA、gdb、strings</td>
+</tr>
+<tr>
+<td></td>
+<td>反调试</td>
+<td>调试器检测，时间检测</td>
+</tr>
+<tr>
+<td></td>
+<td>IDA动调ELF文件</td>
+<td>跨平台动调</td>
+</tr>
+</tbody></table>
+<h1 id="0x01-程序逆向"><a href="#0x01-程序逆向" class="headerlink" title="0x01 程序逆向"></a>0x01 程序逆向</h1><h2 id="查PE、ELF"><a href="#查PE、ELF" class="headerlink" title="查PE、ELF"></a>查PE、ELF</h2><h3 id="file命令"><a href="#file命令" class="headerlink" title="file命令"></a>file命令</h3><p>file命令用来探测给定文件的类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法 ： file (选项) (参数)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/11/24/k9d4gGvTiOwaUx5.png" alt="a0163211b1555a1370cab318fdb2e0c.png"></p>
+<h3 id="exeinfo"><a href="#exeinfo" class="headerlink" title="exeinfo"></a>exeinfo</h3><p><a target="_blank" rel="noopener" href="https://exeinfo-pe32.en.softonic.com/">官网下载地址</a></p>
+<h3 id="peid"><a href="#peid" class="headerlink" title="peid"></a>peid</h3><p><a target="_blank" rel="noopener" href="https://down.52pojie.cn/?query=peid">爱盘 - peid下载</a></p>
+<h3 id="die"><a href="#die" class="headerlink" title="die"></a>die</h3><p><a target="_blank" rel="noopener" href="https://down.52pojie.cn/?query=die">爱盘 - DIE下载</a></p>
+<h2 id="SMC（自修改代码"><a href="#SMC（自修改代码" class="headerlink" title="SMC（自修改代码)"></a>SMC（自修改代码)</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>SMC：Self Modifying Code自修改代码，即将程序中的部分代码在运行前被加密成一段数据（代码二进制文件中就是字节码，本身就是一段二进制数据），不可被反编译，通过程序运行后执行相关解代码功能，对加密的代码数据进行解密，让其恢复正常功能。</p>
+<p>SMC应用演示:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">proc main:</span><br><span class="line">............</span><br><span class="line">IF .运行条件满足</span><br><span class="line">  CALL DecryptProc （Address of MyProc）;对某个函数代码解密</span><br><span class="line">  ........</span><br><span class="line">  CALL MyProc                           ;调用这个函数</span><br><span class="line">  ........</span><br><span class="line">  CALL EncryptProc （Address of MyProc）;再对代码进行加密，防止程序被Dump</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line">end main</span><br></pre></td></tr></table></figure>
+
+<h3 id="一般实现方法"><a href="#一般实现方法" class="headerlink" title="一般实现方法"></a>一般实现方法</h3><p>自修改代码，提前手动将要修改的代码部分替换为加密数据，运行自己的函数对修改部分进行解码。</p>
+<p>在实现SMC时，要注意SMC加解密代码所属的节区是否有可写权限。</p>
+<p>代码分为两个函数，一个函数加密，一个函数解密，两者对应。</p>
+<p>找到要进行SMC的代码地址，然后实现在程序开始的地方设置对该地址数据的解密函数，</p>
+<p>取出要进行SMC的代码的字节码，对其进行加密操作得到一串加密数据。</p>
+<p>用这串加密数据替换原代码的字节码。</p>
+<p>通过这种方式，对核心代码进行SMC加密，程序在被静态反编译的时候，核心代码就是一串数据无法反编译，程序在运行的时候又能成功将这段核心代码复原。</p>
+<h2 id="定位入口点"><a href="#定位入口点" class="headerlink" title="定位入口点"></a>定位入口点</h2><h3 id="OD"><a href="#OD" class="headerlink" title="OD"></a>OD</h3><h4 id="尾部跳转法"><a href="#尾部跳转法" class="headerlink" title="尾部跳转法"></a>尾部跳转法</h4><p>跳转指令位于代码的尾部且跳转到一个很远的位置</p>
+<p>而且在这条指令的后面，会存在非常多的0x00字节，即无意义的代码</p>
+<p>进行跳转即可发现程序入口点</p>
+<h4 id="OD插件"><a href="#OD插件" class="headerlink" title="OD插件"></a>OD插件</h4><p>点击：插件-&gt;OllyDymp-&gt;Find OEP by setting Nop(Trace over)</p>
+<p>会自动寻找入口点</p>
+<h4 id="利用pushad和popad查找入口点"><a href="#利用pushad和popad查找入口点" class="headerlink" title="利用pushad和popad查找入口点"></a>利用pushad和popad查找入口点</h4><p>1.F8快速浏览程序，发现pushad和popad，用于保存所有的寄存器和标志。那么加壳程序很可能在跳转到OEP之前，再回复所有的寄存器和标志，所以我们可以通过在栈上设置一个硬件访问断点来尝试定位OEP。一般来说，在尾部跳转的位置之前会有popad或者popfd指令，通过这个就可以找到OEP。</p>
+<p>2.这些状态它在进入入口点之前一定会出栈，所以我们在该处设置硬件访问断点，先将程序单步运行至pushad之后，再右键单击ESP，选择数据窗口跟随</p>
+<p>3.然后选中数据窗口中的前四个字节，右键单击”断点”-&gt;”硬件访问”-&gt;”Dword“</p>
+<p>4.然后F9，直接执行到出栈访问位置，然后在附近寻找跳转语句进入入口点，在断点位置下方找到retn可能返回一个新位置，找到入口点</p>
+<h4 id="ESP定律"><a href="#ESP定律" class="headerlink" title="ESP定律"></a>ESP定律</h4><p>不断F8单步执行，直到ESP的值变成红色的时候停下来</p>
+<p>在ESP值上单击鼠标右键，选择“数据窗口跟随”</p>
+<p>选中数据窗口中前四个字节的内容，单击鼠标右键，选择”断点”-&gt;“硬件访问”-&gt;”Dword”</p>
+<h2 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>逆向破解的爆破与web的爆破不同，主要通过修改汇编代码实现，控制程序执行流程</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p><a target="_blank" rel="noopener" href="https://x64dbg.com/">x64dbg</a></p>
+<h3 id="破解流程"><a href="#破解流程" class="headerlink" title="破解流程"></a>破解流程</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv16055045">逆向破解_爆破_字符串关键字</a></p>
+<p>输入错误的信息程序会爆出错误的字符串，这就可以当作重要的突破口进行破解</p>
+<p>把程序拖入x64dbg</p>
+<p>ctrl+G输入入口地址到程序入口处，然后运行程序（R），输入错误的验证码让字符串加载出来。</p>
+<p>搜索-&gt;所有模块-&gt;字符串</p>
+<p>双击跳到字符串所在位置</p>
+<p>将判断语句nop掉</p>
+<h2 id="简单脱壳"><a href="#简单脱壳" class="headerlink" title="简单脱壳"></a>简单脱壳</h2><h3 id="UPX"><a href="#UPX" class="headerlink" title="UPX"></a>UPX</h3><p>见博客upx单独文章</p>
+<h3 id="ESP定律脱壳"><a href="#ESP定律脱壳" class="headerlink" title="ESP定律脱壳"></a>ESP定律脱壳</h3><p>ESP 定律的原理在于利用程序中堆栈平衡来快速找到 OEP.</p>
+<p>由于在程序自解密或者自解压过程中, 不少壳会先将当前寄存器状态压栈, 如使用<code>pushad</code>, 在解压结束后, 会将之前的寄存器值出栈, 如使用<code>popad</code>. 因此在寄存器出栈时, 往往程序代码被恢复, 此时硬件断点触发. 然后在程序当前位置, 只需要少许单步操作, 就很容易到达正确的 OEP 位置.</p>
+<ol>
+<li>程序刚载入开始 pushad&#x2F;pushfd</li>
+<li>将全部寄存器压栈后就设对 ESP 寄存器设硬件断点</li>
+<li>运行程序, 触发断点</li>
+<li>删除硬件断点开始分析</li>
+</ol>
+<h2 id="Linux逆向"><a href="#Linux逆向" class="headerlink" title="Linux逆向"></a>Linux逆向</h2><h3 id="ELF格式"><a href="#ELF格式" class="headerlink" title="ELF格式"></a>ELF格式</h3><p><img src="https://s2.loli.net/2022/11/24/9pKmzyd8rR7G1Ak.jpg" alt="b25b00927bfa6ed76147004479adae71.png"></p>
+<p>e_shoff: 节头表的文件偏移量（字节）如果文件没有节头表，则此成员值为0.</p>
+<p>sh_offset: 表示了该section(节)离开文件头部位置的距离。</p>
+<p><img src="https://s2.loli.net/2022/11/24/W9ckCb7Fuw4dp2S.jpg" alt="4814c44450ada5a0edce5c1ee6e2c7d0.png"></p>
+<h3 id="可执行头部"><a href="#可执行头部" class="headerlink" title="可执行头部"></a>可执行头部</h3><p>ELF文件的第一部分是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6&spm=1001.2101.3001.7020">可执行文件</a>头部(Executable Header)，其中包含有关ELF文件类型的信息。ELF文件在各种平台下都通用，ELF文件有32位版本和64位版本，其文件头内容是一样的，只不过有些成员的大小不一样。它的文件图也有两种版本：分别叫“Elf32_Ehdr”和“Elf64_Ehdr”。</p>
+<h3 id="程序头部"><a href="#程序头部" class="headerlink" title="程序头部"></a>程序头部</h3><p>程序头部是描述文件中的各种segments(段)，用来告诉系统如何创建进程映像的。</p>
+<h3 id="节表头部"><a href="#节表头部" class="headerlink" title="节表头部"></a>节表头部</h3><p>节表头部(Section Headers)包含了描述文件节区的信息，比如大小、偏移等，但这些对二进制文件的执行流程来说并不重要。sections 或者 segments：segments是从运行的角度来描述elf文件，sections是从链接的角度来描述elf文件，也就是说，在链接阶段，我们可以忽略program header table来处理此文件，在运行阶段可以忽略section header table来处理此程序(所以很多加固手段删除了section header table)。从图中我们也可以看出， segments与sections是包含的关系，一个segment包含若干个section。</p>
+<h2 id="表"><a href="#表" class="headerlink" title="表"></a>表</h2><p>1 .bss Section</p>
+<p>保存未初始化的数据，比如那些未初始化的全局变量。</p>
+<p>2 .data Section</p>
+<p>保存已初始化的数据。</p>
+<p>3 .rodata Section</p>
+<p>保存程序中的只读数据。</p>
+<p>4 .text Section</p>
+<p>本节包含程序的实际代码，逻辑流程。使用readelf查看ELF文件表结构</p>
+<h2 id="反调试"><a href="#反调试" class="headerlink" title="反调试"></a>反调试</h2><p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-264727.htm">看雪《逆向工程核心原理》——反调试技术</a></p>
+<h3 id="IDA动调ELF（跨平台）"><a href="#IDA动调ELF（跨平台）" class="headerlink" title="IDA动调ELF（跨平台）"></a>IDA动调ELF（跨平台）</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hnzwx888/article/details/85317738">ida动态调试elf(无坑详细)_hnzwx888的博客-CSDN博客_ida动态调试查看十六进制</a></p>
+<p>1.把ida中dbgsrv目录下的linux_server或者linux_serverx64放到linux中（根据自己要调试的程序选择哪个版本的）</p>
+<p>2.chmod a+x linux_serverx64改变属性，然后运行 linux_serverx64</p>
+<p>3. 首先选择Romote Linux debugger，然后在process option中设置相关相关参数</p>
+<p>4.首先在ida中下断点，然后点start process，程序运行，在linux中就可以看到程序启动了（注意这里不是attach process，选择attach process会报错时候程序是在终端运行或者你没有权限）</p>
+<h1 id="0x02-VM逆向"><a href="#0x02-VM逆向" class="headerlink" title="0x02 VM逆向"></a>0x02 VM逆向</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43876357/article/details/108570305">系统学习vm虚拟机逆向_43v3rY0unG的博客-CSDN博客_vm逆向</a></p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>逆向中的虚拟机保护是一种基于虚拟机的代码保护技术。它将基于x86汇编系统中的可执行代码转换为字节码指令系统的代码，来达到不被轻易逆向和篡改的目的。简单点说就是将程序的代码转换自定义的操作码(opcode)，然后在程序执行时再通过解释这些操作码，选择对应的函数执行，从而实现程序原有的功能。<br><strong>vm_start</strong>: 虚拟机的入口函数，对虚拟机环境进行初始化</p>
+<p><strong>vm_dispatcher</strong>：调度器，解释opcode，并选择对应的handle函数执行，当handle执行完后会跳回这里，形成一个循环</p>
+<p><strong>opcode</strong>：程序可执行代码转换成的操作码</p>
+<p>在这种情况下，如果要逆向程序，就需要对整个emulator结构进行逆向，理解程序功能，还需要结合opcode进行分析，整个程序逆向工程将会十分繁琐。这是一个一般虚拟机结构：</p>
+<p><img src="https://s2.loli.net/2022/11/24/41kJTW5fNarXunE.png" alt="20200913233242996.png"></p>
+<h2 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h2><p>在比赛中，虚拟机题目常常有两种考法：</p>
+<p>·  给可执行程序和opcode，逆向emulator，结合opcode文件，推出flag</p>
+<p>·  只给可执行程序，逆向emulator，构造opcode，读取flag</p>
+<p>拿到一个虚拟机之后，一般有以下几个逆向过程：</p>
+<p>·  分析虚拟机入口，搞清虚拟机的输入，或者opcode位置</p>
+<p>·  理清虚拟机结构，包括Dispatcher和各个Handler</p>
+<p>·  逆向各个Handler，分析opcode的意义</p>
+<p>调试过程中，在汇编层面调试当然是最基本最直接的方法，但是由于虚拟机Handler可能比较多，调试十分繁琐。<br>若虚拟机内部没有很复杂的代码混淆，可以考虑使用IDA进行源码级调试，这对于快速整理emulator意义很有帮助。<br>再进一步，可以结合IDA反编译伪代码，加上一些宏定义，加入输出，重新编译，可以十分快速的逆向整个emulator执行过程</p>
+<h2 id="一些关键的结构体"><a href="#一些关键的结构体" class="headerlink" title="一些关键的结构体"></a>一些关键的结构体</h2><p>vm_cpu</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">    unsigned long r1;    //虚拟寄存器r1</span><br><span class="line">    unsigned long r2;    //虚拟寄存器r2</span><br><span class="line">    unsigned long r3;    //虚拟寄存器r3</span><br><span class="line">    unsigned char *eip;    //指向正在解释的opcode地址</span><br><span class="line">    vm_opcode op_list[OPCODE_N];    //opcode列表，存放了所有的opcode及其对应的处理函数</span><br><span class="line">&#125;vm_cpu;</span><br></pre></td></tr></table></figure>
+
+<p>其中r1-r3是定义的通用寄存器，用来传参或者是存放返回值，eip指向正在解释的opcode的地址。</p>
+<p>vm_opcode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">    unsigned char opcode;</span><br><span class="line">    void (*handle)(void*);</span><br><span class="line">&#125;vm_opcode;</span><br></pre></td></tr></table></figure>
+
+<p>实现了虚拟环境之后就可以开始实现解释器了。解释器的功能就是对opcode解析，选择相应的handle函数，并且将相应的参数传递给handle函数，由handle函数来解释执行一条指令。</p>
+<h2 id="关键函数"><a href="#关键函数" class="headerlink" title="关键函数"></a>关键函数</h2><p>vm_init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">void *vm_init()</span><br><span class="line">&#123;</span><br><span class="line">    vm_vpu *cpu;</span><br><span class="line">    cpu-&gt;r1 = 0;</span><br><span class="line">    cpu-&gt;r2 = 0;</span><br><span class="line">    cpu-&gt;r3 = 0;</span><br><span class="line">    cpu-&gt;eip = (unsigned char *)vm_code;//将eip指向opcode的地址</span><br><span class="line"></span><br><span class="line">    cpu-&gt;op_list[0].opcode = 0xf1;</span><br><span class="line">    cpu-&gt;op_list[0].handle = (void (*)(void *))mov;//将操作字节码与对应的handle函数关联在一起</span><br><span class="line"></span><br><span class="line">    cpu-&gt;op_list[1].opcode = 0xf2;</span><br><span class="line">    cpu-&gt;op_list[1].handle = (void (*)(void *))xor;</span><br><span class="line"></span><br><span class="line">    cpu-&gt;op_list[2].opcode = 0xf5;</span><br><span class="line">    cpu-&gt;op_list[2].handle = (void (*)(void *))read_;</span><br><span class="line"></span><br><span class="line">    vm_stack = malloc(0x512);</span><br><span class="line">    memset(vm_stack,0,0x512);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vm_start</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void vm_start(vm_cpu *cpu)</span><br><span class="line">&#123;</span><br><span class="line">    /*</span><br><span class="line">    进入虚拟机</span><br><span class="line">    eip指向要被解释的opcode地址</span><br><span class="line">    */</span><br><span class="line">    cpu-&gt;eip = (unsigned char*)opcodes;</span><br><span class="line">    while((*cpu-&gt;eip) != 0xf4)//如果opcode不为RET，就调用vm_dispatcher来解释执行</span><br><span class="line">    &#123;</span><br><span class="line">        vm_dispatcher(*cpu-&gt;eip)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vm_dispatcher</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void vm_dispatcher(vm_cpu *cpu)</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    for(i = 0; i &lt; OPCODE_N; i++)</span><br><span class="line">    &#123;    </span><br><span class="line">        if(*cpu-&gt;eip == cpu-&gt;op_list[i].opcode)</span><br><span class="line">        &#123;</span><br><span class="line">            cpu-&gt;op_list[i].handle(cpu);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>handles</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">void mov(vm_cpu *cpu);</span><br><span class="line">void xor(vm_cpu *cpu);    //xor flag</span><br><span class="line">void read_(vm_cpu *cpu);    //call read, read the flag</span><br><span class="line"></span><br><span class="line">void xor(vm_cpu *cpu)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;</span><br><span class="line">    temp = cpu-&gt;r1 ^ cpu-&gt;r2;</span><br><span class="line">    temp ^= 0x12;</span><br><span class="line">    cpu-&gt;r1 = temp;</span><br><span class="line">    cpu-&gt;eip += 1;    //xor指令占一个字节</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void read_(vm_cpu *cpu)</span><br><span class="line">&#123;</span><br><span class="line">    char *dest = vm_stack;</span><br><span class="line">    read(0,dest,12);    //用于往虚拟机的栈上读取数据</span><br><span class="line">    cpu-&gt;eip += 1;    //read_指令占一个字节</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void mov(vm_cpu *cpu)</span><br><span class="line">&#123;</span><br><span class="line">    //mov指令的参数都因曾在字节码也就是vm_code中，指令表示后的一个字节是寄存器表示，第二到</span><br><span class="line">//第五是要mov的数据在vm_stack上的偏移</span><br><span class="line">    //这里只是实现了从vm_stack上取数据和存数据到vm_stack上</span><br><span class="line">    unsigned char *res = cpu-&gt;eip + 1;    //寄存器标识</span><br><span class="line">    int *offset = (int *)(cpu-&gt;eip + 2);    //寄存器在vm_stack上的偏移</span><br><span class="line">    char *dest = 0;</span><br><span class="line">    dest = vm_stack;</span><br><span class="line"></span><br><span class="line">    switch (*res) &#123;</span><br><span class="line">        case 0xe1:</span><br><span class="line">            cpu-&gt;r1 = *(dest + *offset);</span><br><span class="line">            break;   </span><br><span class="line"></span><br><span class="line">        case 0xe2:</span><br><span class="line">            cpu-&gt;r2 = *(dest + *offset);</span><br><span class="line">            break;   </span><br><span class="line"></span><br><span class="line">        case 0xe3:</span><br><span class="line">            cpu-&gt;r3 = *(dest + *offset);</span><br><span class="line">            break;   </span><br><span class="line">        case 0xe4:</span><br><span class="line">        &#123;</span><br><span class="line">            int x = cpu-&gt;r1;</span><br><span class="line">            *(dest + *offset) = x;</span><br><span class="line">            break;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    cpu-&gt;eip += 6;</span><br><span class="line">    //mov指令占六个字节，所以eip要向后移6位</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解释器到这里就实现结束了。接下来是要将想要实现功能的伪代码转成自定义的vm_code，伪代码的功能是从标准输入中读取12个字节的字符串，然后加你个读入的字符串每个字符与0x0还有0x12进行异或，并且将结果存储在虚拟机的栈上。写出来大概就是下面这样子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">    call read_</span><br><span class="line">    MOV R1,flag[0]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x20;    //这是将R1的值送到vm_stack+0x20的位置，后面的同上</span><br><span class="line">    MOV R1,flag[1]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x21;</span><br><span class="line">    MOV R1,flag[2]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x22</span><br><span class="line">    MOV R1,flag[3]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x23;</span><br><span class="line">    MOV R1,flag[4]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x24;</span><br><span class="line">    MOV R1,flag[5]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x25;</span><br><span class="line">    MOV R1,flag[6]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x26;</span><br><span class="line">    MOV R1,flag[7]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x26</span><br><span class="line">    MOV R1,flag[8]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0X27</span><br><span class="line">    MOV R1,flag[9]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x28</span><br><span class="line">    MOV R1,flag[10]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0X29</span><br><span class="line">    MOV R1,flag[11]</span><br><span class="line">    XOR</span><br><span class="line">    MOV R1,0x2A</span><br><span class="line">    RET</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>vm_code用来存放操作码，例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">unsigned char vm_code[] = &#123;</span><br><span class="line">    0xf5,</span><br><span class="line">    0xf1,0xe1,0x0,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x20,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x1,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x21,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x2,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x22,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x3,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x23,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x4,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x24,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x5,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x25,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x6,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x26,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x7,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x27,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x8,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x28,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0x9,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x29,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0xa,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x2a,0x00,0x00,0x00,</span><br><span class="line">    0xf1,0xe1,0xb,0x00,0x00,0x00,0xf2,0xf1,0xe4,0x2b,0x00,0x00,0x00,</span><br><span class="line">    0xf4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其实就是在vm_start()函数中对opcode进行解析，把*cpu-&gt;eip做if&#x2F;switch，在其嵌套中做一些操作并改变指针。</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="Python字节码"><a href="#Python字节码" class="headerlink" title="Python字节码"></a>Python字节码</h2><p>见博客文章</p>
+<h2 id="pyc反编译"><a href="#pyc反编译" class="headerlink" title="pyc反编译"></a>pyc反编译</h2><p>见博客文章</p>
+<h1 id="NET-x2F-C"><a href="#NET-x2F-C" class="headerlink" title=".NET&#x2F;C#"></a>.NET&#x2F;C#</h1><h2 id="Unity游戏逆向思路"><a href="#Unity游戏逆向思路" class="headerlink" title="Unity游戏逆向思路"></a>Unity游戏逆向思路</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/41b1139987b9">Unity游戏逆向思路 - 简书</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.likecs.com/show-204299519.html">第3天:dnspy逆向unity游戏-爱码网</a></p>
+<p>dnSpy可以调试Unity调试版本和发布版本。发布版本需要修改的文件是mono-2.0-bdwgc.dll &#x2F; mono.dll。也可以将发布版本转换为调试版本</p>
+<h2 id="NET-Reflector8-5-ILSpy"><a href="#NET-Reflector8-5-ILSpy" class="headerlink" title="NET.Reflector8.5 ILSpy"></a>NET.Reflector8.5 ILSpy</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27250279/article/details/126585567">.NET Reflector + ILSpy 反编译过程_ilspy反编译后重建</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.red-gate.com/products/dotnet-development/reflector/">.NET Decompiler: Decompile Any .NET Code | .NET Reflector</a></p>
+<p><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/ilspy.mirror/">ILSpy download | SourceForge.net</a></p>
+<h1 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h1><h2 id="so动态调试"><a href="#so动态调试" class="headerlink" title="so动态调试"></a>so动态调试</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">M1nG_0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/11/24/CTF-Re%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">http://example.com/2022/11/24/CTF-Re%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">M1nG's BLOG</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">逆向工程</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/11/14/2022UNCTF-Re/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2022UNCTF Re</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/10/23/Python-%E5%AD%97%E8%8A%82%E7%A0%81/" title="Python 字节码"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-23</div><div class="title">Python 字节码</div></div></a></div><div><a href="/2022/10/13/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%8A%B1%E6%8C%87%E4%BB%A4/" title="逆向学习笔记——花指令"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-13</div><div class="title">逆向学习笔记——花指令</div></div></a></div><div><a href="/2022/10/12/%E6%B7%B7%E6%B7%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="混淆"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-12</div><div class="title">混淆</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/05/19/nODWsJILHQ7rMYC.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">M1nG_0</div><div class="author-info__description">啊铭的博客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to M1nG's BLOG</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x00-CTF-Reverse%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">0x00 CTF Reverse基础知识总览</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-%E7%A8%8B%E5%BA%8F%E9%80%86%E5%90%91"><span class="toc-number">2.</span> <span class="toc-text">0x01 程序逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5PE%E3%80%81ELF"><span class="toc-number">2.1.</span> <span class="toc-text">查PE、ELF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#file%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.1.</span> <span class="toc-text">file命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exeinfo"><span class="toc-number">2.1.2.</span> <span class="toc-text">exeinfo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#peid"><span class="toc-number">2.1.3.</span> <span class="toc-text">peid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#die"><span class="toc-number">2.1.4.</span> <span class="toc-text">die</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SMC%EF%BC%88%E8%87%AA%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">SMC（自修改代码)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">一般实现方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%85%A5%E5%8F%A3%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">定位入口点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OD"><span class="toc-number">2.3.1.</span> <span class="toc-text">OD</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%BE%E9%83%A8%E8%B7%B3%E8%BD%AC%E6%B3%95"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">尾部跳转法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OD%E6%8F%92%E4%BB%B6"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">OD插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8pushad%E5%92%8Cpopad%E6%9F%A5%E6%89%BE%E5%85%A5%E5%8F%A3%E7%82%B9"><span class="toc-number">2.3.1.3.</span> <span class="toc-text">利用pushad和popad查找入口点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ESP%E5%AE%9A%E5%BE%8B"><span class="toc-number">2.3.1.4.</span> <span class="toc-text">ESP定律</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%86%E7%A0%B4"><span class="toc-number">2.4.</span> <span class="toc-text">爆破</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-number">2.4.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">2.4.2.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3%E6%B5%81%E7%A8%8B"><span class="toc-number">2.4.3.</span> <span class="toc-text">破解流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E8%84%B1%E5%A3%B3"><span class="toc-number">2.5.</span> <span class="toc-text">简单脱壳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UPX"><span class="toc-number">2.5.1.</span> <span class="toc-text">UPX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ESP%E5%AE%9A%E5%BE%8B%E8%84%B1%E5%A3%B3"><span class="toc-number">2.5.2.</span> <span class="toc-text">ESP定律脱壳</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E9%80%86%E5%90%91"><span class="toc-number">2.6.</span> <span class="toc-text">Linux逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ELF%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.6.1.</span> <span class="toc-text">ELF格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E5%A4%B4%E9%83%A8"><span class="toc-number">2.6.2.</span> <span class="toc-text">可执行头部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%A4%B4%E9%83%A8"><span class="toc-number">2.6.3.</span> <span class="toc-text">程序头部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E8%A1%A8%E5%A4%B4%E9%83%A8"><span class="toc-number">2.6.4.</span> <span class="toc-text">节表头部</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8"><span class="toc-number">2.7.</span> <span class="toc-text">表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E8%B0%83%E8%AF%95"><span class="toc-number">2.8.</span> <span class="toc-text">反调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IDA%E5%8A%A8%E8%B0%83ELF%EF%BC%88%E8%B7%A8%E5%B9%B3%E5%8F%B0%EF%BC%89"><span class="toc-number">2.8.1.</span> <span class="toc-text">IDA动调ELF（跨平台）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-VM%E9%80%86%E5%90%91"><span class="toc-number">3.</span> <span class="toc-text">0x02 VM逆向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">3.1.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">分析方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">3.3.</span> <span class="toc-text">一些关键的结构体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">关键函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python"><span class="toc-number">4.</span> <span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%AD%97%E8%8A%82%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">Python字节码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyc%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="toc-number">4.2.</span> <span class="toc-text">pyc反编译</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NET-x2F-C"><span class="toc-number">5.</span> <span class="toc-text">.NET&#x2F;C#</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Unity%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91%E6%80%9D%E8%B7%AF"><span class="toc-number">5.1.</span> <span class="toc-text">Unity游戏逆向思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NET-Reflector8-5-ILSpy"><span class="toc-number">5.2.</span> <span class="toc-text">NET.Reflector8.5 ILSpy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android"><span class="toc-number">6.</span> <span class="toc-text">Android</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#so%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95"><span class="toc-number">6.1.</span> <span class="toc-text">so动态调试</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/24/CTF-Re%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="CTF Re基础知识">CTF Re基础知识</a><time datetime="2022-11-24T09:22:30.000Z" title="发表于 2022-11-24 17:22:30">2022-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/14/2022UNCTF-Re/" title="2022UNCTF Re">2022UNCTF Re</a><time datetime="2022-11-14T11:36:25.000Z" title="发表于 2022-11-14 19:36:25">2022-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/26/DASCTF-X-GFCTF2022%E5%8D%81%E6%9C%88%E8%B5%9BRe%E8%B5%9B%E5%90%8E%E5%A4%8D%E7%8E%B0/" title="DASCTF X GFCTF2022十月赛Re赛后复现">DASCTF X GFCTF2022十月赛Re赛后复现</a><time datetime="2022-10-26T10:02:36.000Z" title="发表于 2022-10-26 18:02:36">2022-10-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/23/Python-%E5%AD%97%E8%8A%82%E7%A0%81/" title="Python 字节码">Python 字节码</a><time datetime="2022-10-23T11:57:06.000Z" title="发表于 2022-10-23 19:57:06">2022-10-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/13/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%8A%B1%E6%8C%87%E4%BB%A4/" title="逆向学习笔记——花指令">逆向学习笔记——花指令</a><time datetime="2022-10-13T14:26:11.000Z" title="发表于 2022-10-13 22:26:11">2022-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By M1nG_0</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi! I am M1nG_0.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
